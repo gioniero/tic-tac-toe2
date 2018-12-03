@@ -6,7 +6,7 @@ import { calculateWinner, calculateDraw } from '../utils.js'
 
 class App extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       history: [{
         squares: Array(9).fill(null)
@@ -17,98 +17,88 @@ class App extends Component {
       secondPlayerSymbol: 'O',
       row: Array(3).fill(null),
       field: Array(3).fill(null),
-      ascendingOrderMoves: true,
-    };
+      ascendingOrderMoves: true
+    }
   }
 
   handleClick(i) {
-    const history = this.state.history.slice(0, this.state.stepNumber + 1);
-    const current = history[history.length - 1];
-    const squares = current.squares.slice();
-    if (calculateWinner(squares) || squares[i]) {
-      return;
-    }
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
+    const history = this.state.history.slice(0, this.state.stepNumber + 1)
+    const current = history[history.length - 1]
+    const squares = current.squares.slice()
+    if (calculateWinner(squares) || squares[i])
+      return
+    squares[i] = this.state.xIsNext ? 'X' : 'O'
     this.setState({
       history: history.concat([{
         squares: squares
       }]),
       xIsNext: !this.state.xIsNext,
-      stepNumber: history.length,
-    });
+      stepNumber: history.length
+    })
   }
-  jumpTo(step){
+  jumpTo(step) {
     this.setState({
       stepNumber: step,
-      xIsNext: (step % 2) === 0,
-    });
+      xIsNext: (step % 2) === 0
+    })
   }
 
-  onChangeSecondPlayer(str){
-
+  onChangeSecondPlayer(str) {
     this.setState({
-      secondPlayerSymbol: str,
-    });
+      secondPlayerSymbol: str
+    })
   }
-
-
-  onChangeFirstPlayer(str){
+  onChangeFirstPlayer(str) {
     this.setState({
-      firstPlayerSymbol: str,
-    });
+      firstPlayerSymbol: str
+    })
   }
 
   render() {
-    const history = this.state.history;
-    const current = history[this.state.stepNumber];
-    const toCalculateWinner = ((str) => {
+    const history = this.state.history
+    const current = history[this.state.stepNumber]
+    const toCalculateWinner = (str) => {
       if ((str) === 'X')
-        { return (this.state.firstPlayerSymbol)}
+        return (this.state.firstPlayerSymbol)
       else if ((str) === 'O')
-        {return (this.state.secondPlayerSymbol)}
+        return (this.state.secondPlayerSymbol)
       else
-        {return null}
-    });
-    const winner = toCalculateWinner(calculateWinner(current.squares));
-    const draw = calculateDraw(current.squares);
+        return null
+    }
+    const winner = toCalculateWinner(calculateWinner(current.squares))
+    const draw = calculateDraw(current.squares)
 
     const moves = history.map((step, move) => {
-     if (move === 0)
-       {
-         const desc = 'Go to game start';
-          return (
+      if (move === 0) {
+        const desc = 'Go to game start'
+        return (
+          <li key={move}>
+            <button onClick={() => this.jumpTo(move)}>{desc}</button>
+          </li>) }
+      else if (this.state.ascendingOrderMoves) {
+        const desc = 'Go to move #' + move
+        return (
           <li key={move}>
             <button onClick={() => this.jumpTo(move)}>{desc}</button>
           </li>)
-       }
-     else if(this.state.ascendingOrderMoves)
-       {
-      const desc ='Go to move #' + move;
-      return (
-        <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
-        </li>
-
-      );
-       }
-      else {
-        const desc = 'Go to move #' + (this.state.history.length - move);
-      return (
-        <li key={move}>
-          <button onClick={() => this.jumpTo(this.state.history.length - move)}>
-              {desc}</button>
-        </li>)
       }
-    });
+      else {
+        const desc = 'Go to move #' + (this.state.history.length - move)
+        return (
+          <li key={move}>
+            <button onClick={() => this.jumpTo(this.state.history.length - move)}>
+              {desc}</button>
+          </li>)
+      }
+    })
 
-    let status;
-    if (winner) {
-      status = 'Winner: ' + winner;
-    } else if(draw) {
-      status = "Draw";
-    } else {
-      status = 'Next player: ' + (this.state.xIsNext ? this.state.firstPlayerSymbol : this.state.secondPlayerSymbol);
-    }
+    let status
+    if (winner)
+      status = 'Winner: ' + winner
+    else if (draw)
+      status = "Draw"
+    else
+      status = 'Next player: ' + (this.state.xIsNext ? this.state.firstPlayerSymbol : this.state.secondPlayerSymbol)
 
     return (
       <div className="game">
@@ -116,7 +106,7 @@ class App extends Component {
           <Settings
             onChangeFirstPlayer={(str) => this.onChangeFirstPlayer(str)}
             onChangeSecondPlayer={(str) => this.onChangeSecondPlayer(str)}
-            />
+          />
           <Board
             firstPlayerSymbol={this.state.firstPlayerSymbol}
             secondPlayerSymbol={this.state.secondPlayerSymbol}
@@ -128,16 +118,14 @@ class App extends Component {
         </div>
         <div className="game-info">
           <div>{status}</div>
-         <button onClick={() => this.setState({
-      ascendingOrderMoves: !this.state.ascendingOrderMoves,
-    })}>"Change Order of moves" </button>
+          <button onClick={() => this.setState({
+            ascendingOrderMoves: !this.state.ascendingOrderMoves
+          })}>"Change Order of moves" </button>
           <ol>{moves}</ol>
         </div>
       </div>
-    );
+    )
   }
 }
 
-
-
-export default App;
+export default App
