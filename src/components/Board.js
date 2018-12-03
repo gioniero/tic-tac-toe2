@@ -19,7 +19,6 @@ class Board extends Component {
   }
 
   render() {
-
     const gameField = this.props.field.map((item, k) =>
                                     <div key={k} className="board-row">
                                             {this.props.row.map((item, i) =>
