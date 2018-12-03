@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
-import '../css/App.css';
-import Board from './Board.js';
-import Settings from './Settings.js';
-import {calculateWinner, calculateDraw} from '../utils.js';
+import React, { Component } from 'react'
+import '../css/App.css'
+import Board from './Board.js'
+import Settings from './Settings.js'
+import { calculateWinner, calculateDraw } from '../utils.js'
 
 class App extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -59,18 +58,16 @@ class App extends Component {
     });
   }
 
-
-
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const toCalculateWinner = ((str) => {
       if ((str) === 'X')
-      { return (this.state.firstPlayerSymbol)}
+        { return (this.state.firstPlayerSymbol)}
       else if ((str) === 'O')
         {return (this.state.secondPlayerSymbol)}
       else
-        {return null};
+        {return null}
     });
     const winner = toCalculateWinner(calculateWinner(current.squares));
     const draw = calculateDraw(current.squares);
