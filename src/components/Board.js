@@ -34,4 +34,5 @@ class Board extends Component {
     );
   }
 }
- export default Board;
+
+export default Board;
