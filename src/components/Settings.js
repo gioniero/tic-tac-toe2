@@ -11,15 +11,9 @@ class Settings extends Component {
           <h3>
             First player:
           </h3>
-
-          <label>
-            <input type="radio" name="X-Y"
-              onChange={() => this.props.onChangeFirstPlayer('X') }
-            />X
-            <input type="radio" name="X-Y"
-              onChange={() => this.props.onChangeFirstPlayer('Y')}
-            />Y
-          </label>
+          <div>
+            <input type="text" placeholder="First Player: let's choose your symbol" id="symbol" value={this.props.firstPlayerSymbol} onChange={(event) => {console.log(event) || this.props.onChangeFirstPlayer(event.target.value)}} />
+          </div>
         </div>
         <div>
           <h3>

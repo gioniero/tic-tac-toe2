@@ -104,6 +104,7 @@ class App extends Component {
       <div className="game">
         <div className="game-board">
           <Settings
+            firstPlayerSymbol={this.state.firstPlayerSymbol}
             onChangeFirstPlayer={(str) => this.onChangeFirstPlayer(str)}
             onChangeSecondPlayer={(str) => this.onChangeSecondPlayer(str)}
           />
