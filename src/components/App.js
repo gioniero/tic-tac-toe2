@@ -64,15 +64,16 @@ class App extends Component {
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
-
-    if (calculateWinner(current.squares) === 'X')
-      {const winner=this.state.firstPlayerSymbol};
-    if (calculateWinner(current.squares) === 'O')
-      {const winner=this.state.secondPlayerSymbol};
-    else
-      {const winner=calculateWinner(current.squares)};
+    const toCalculateWinner = ((str) => {
+      if ((str) === 'X')
+      { return (this.state.firstPlayerSymbol)}
+      else if ((str) === 'O')
+        {return (this.state.secondPlayerSymbol)}
+      else
+        {return null};
+    });
+    const winner = toCalculateWinner(calculateWinner(current.squares));
     const draw = calculateDraw(current.squares);
-
 
     const moves = history.map((step, move) => {
      if (move === 0)
