@@ -44,14 +44,28 @@ class App extends Component {
   }
 
   onChangeSecondPlayer(str) {
-    this.setState({
-      secondPlayerSymbol: str
-    })
+    if (str.length < 2) {
+      this.setState({
+        secondPlayerSymbol: str
+      })
+    }
+    else {
+      this.setState({
+        secondPlayerSymbol: str.substring(0, 2)
+      })
+    }
   }
   onChangeFirstPlayer(str) {
-    this.setState({
-      firstPlayerSymbol: str
-    })
+    if (str.length < 2) {
+      this.setState({
+        firstPlayerSymbol: str
+      })
+    }
+    else {
+      this.setState({
+        firstPlayerSymbol: str.substring(0, 2)
+      })
+    }
   }
 
   render() {
