@@ -96,3 +96,35 @@ ol, ul {
 .game-info {
   margin: 20px;
 }
+
+.firstPlayerSquare {
+  background: #f00;
+  border: 1px solid #999;
+  float: left;
+  font-size: 44px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 74px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 74px;
+  justify-content: center;
+}
+
+.secondPlayerSquare {
+  background: #00f;
+  border: 1px solid #999;
+  float: left;
+  font-size: 44px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 74px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 74px;
+  justify-content: center;
+}
