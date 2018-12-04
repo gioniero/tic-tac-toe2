@@ -44,28 +44,14 @@ class App extends Component {
   }
 
   onChangeSecondPlayer(str) {
-    if (str.length < 2) {
-      this.setState({
-        secondPlayerSymbol: str
-      })
-    }
-    else {
-      this.setState({
-        secondPlayerSymbol: str.substring(0, 2)
-      })
-    }
+    this.setState({
+      secondPlayerSymbol: str.substring(0, 2)
+    })
   }
   onChangeFirstPlayer(str) {
-    if (str.length < 2) {
-      this.setState({
-        firstPlayerSymbol: str
-      })
-    }
-    else {
-      this.setState({
-        firstPlayerSymbol: str.substring(0, 2)
-      })
-    }
+    this.setState({
+      firstPlayerSymbol: str.substring(0, 2)
+    })
   }
 
   render() {
@@ -84,25 +70,21 @@ class App extends Component {
 
     const moves = history.map((step, move) => {
       if (move === 0) {
-        const desc = 'Go to game start'
-        return (
-          <li key={move}>
-            <button onClick={() => this.jumpTo(move)}>{desc}</button>
-          </li>) }
-      else if (this.state.ascendingOrderMoves) {
-        const desc = 'Go to move #' + move
-        return (
-          <li key={move}>
-            <button onClick={() => this.jumpTo(move)}>{desc}</button>
-          </li>)
-      }
-      else {
-        const desc = 'Go to move #' + (this.state.history.length - move)
-        return (
-          <li key={move}>
-            <button onClick={() => this.jumpTo(this.state.history.length - move)}>
-              {desc}</button>
-          </li>)
+        return <li key={move}>
+          <button onClick={() => this.jumpTo(move)}>
+            Go to game start
+          </button>
+        </li>
+      } else if (this.state.ascendingOrderMoves) {
+        return <li key={move}>
+          <button onClick={() => this.jumpTo(move)}>{'Go to move #' + move}</button>
+        </li>
+      } else {
+        return <li key={move}>
+          <button onClick={() => this.jumpTo(this.state.history.length - move)}>
+            {'Go to move #' + (this.state.history.length - move)}
+          </button>
+        </li>
       }
     })
 
@@ -110,7 +92,7 @@ class App extends Component {
     if (winner)
       status = 'Winner: ' + winner
     else if (draw)
-      status = "Draw"
+      status = 'Draw'
     else
       status = 'Next player: ' + (this.state.xIsNext ? this.state.firstPlayerSymbol : this.state.secondPlayerSymbol)
 

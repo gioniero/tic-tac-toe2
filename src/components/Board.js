@@ -1,6 +1,11 @@
 import Square from './Square.js'
 import React, { Component }  from 'react'
 
+// trasforma questa classe in una funzione pura
+// usa un colore di sfondo diverso per le caselle del giocatore 1
+// e quelle del giocatore 2, a prescindere dal simbolo
+// (ad esempio 1 rosso, 2 blu, non selezionate gialle)
+
 class Board extends Component {
   renderSquare(i) {
     let value
@@ -30,7 +35,7 @@ class Board extends Component {
         <div className="status">{this.props.status}</div>
         <div>{gameField}</div>
       </div>
-    );
+    )
   }
 }
 

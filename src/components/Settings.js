@@ -1,5 +1,9 @@
 import React, { Component }  from 'react'
 
+// trasforma questa classe in una funzione pura
+// const Settings = (props) => {...}
+
+// fai sì che di default gli input siano popolati con il simbolo corrente, anche all'inizio
 class Settings extends Component {
   render() {
     return (
